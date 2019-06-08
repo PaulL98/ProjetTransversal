@@ -14,7 +14,7 @@ class ClientOption extends Component{
     render(){
   return(
            <>
-           <option value={0}> Choose Client </option>
+           <option value={0}> New Client </option>
            {this.state.clients}
            </>
        )

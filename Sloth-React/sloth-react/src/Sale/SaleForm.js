@@ -78,58 +78,88 @@ class AddSale extends Component {
         if(this.state.idClient === '0'){
             return (
                 <div>
-                    <h1>Add a Post</h1>
+                    <h1>Add Sale</h1>
+                    <div class="container border rounded p-3">
+                    <div class="form-group">
                     <label>idSeller</label>
-                   <select value={this.state.idSeller} onChange={(event) => this.setState({idSeller: event.target.value})}>
+                   <select class="form-control" value={this.state.idSeller} onChange={(event) => this.setState({idSeller: event.target.value})}>
                       {this.state.sellers}
                     </select>
+                    </div>
+                    <div class="form-group">
                     <label>idClient</label>
-                   <select value={this.state.idClient} onChange={(event) => this.setState({idClient: event.target.value})}>
+                   <select class="form-control" value={this.state.idClient} onChange={(event) => this.setState({idClient: event.target.value})}>
                       {this.state.clients}
                     </select>
+                    </div>
+                    <div class="form-group">
                        <label>name</label>
-                       <input type="text" value={this.state.name} onChange={(event) => this.setState({name: event.target.value})} />
+                       <input class="form-control" type="text" value={this.state.name} onChange={(event) => this.setState({name: event.target.value})} />
+                       </div>
+                       <div class="form-group">
                        <label>last name</label>
-                       <input type="text" value={this.state.lastName} onChange={(event) => this.setState({lastName: event.target.value})} />
+                       <input class="form-control" type="text" value={this.state.lastName} onChange={(event) => this.setState({lastName: event.target.value})} />
+                       </div>
+                       <div class="form-group">
                        <label>Model</label>
-                    <select value={this.state.idModel} onChange={(event) => this.setState({idModel: event.target.value})}>
+                    <select class="form-control" value={this.state.idModel} onChange={(event) => this.setState({idModel: event.target.value})}>
                       {this.state.models}
                     </select>
+                    </div>
+                    <div class="form-group">
                     <label>Size</label>
-                    <input type="text" value={this.state.size} onChange={(event) => this.setState({size: event.target.value})} />
+                    <input class="form-control" type="text" value={this.state.size} onChange={(event) => this.setState({size: event.target.value})} />
+                    </div>
+                    <div class="form-group">
                     <label>Price</label>
-                    <input type="text" value={this.state.price} onChange={(event) => this.setState({price: event.target.value})} />
+                    <input class="form-control" type="text" value={this.state.price} onChange={(event) => this.setState({price: event.target.value})} />
+                    </div>
+                    <div class="form-group">
                     <label>quantity</label>
-                    <input type="text" value={this.state.quantity} onChange={(event) => this.setState({quantity: event.target.value})} />
-                    <button onClick={this.postDataHandler}>Add Post</button>
-                    <StockOption sellerId={this.idSeller} />
+                    <input class="form-control" type="text" value={this.state.quantity} onChange={(event) => this.setState({quantity: event.target.value})} />
+                    </div>
+                    <button class="btn btn-outline-success" onClick={this.postDataHandler}>Add Post</button>
+                    </div>
                 </div>
                 
             );
         }else{
             return (
                 <div>
-                    <h1>Add a Post</h1>
+                    <h1>Add Sale</h1>
+                    <div class="container border rounded p-3">
+                    <div class="form-group">
                     <label>idSeller</label>
-                   <select value={this.state.idSeller} onChange={(event) => this.setState({idSeller: event.target.value})}>
+                   <select class="form-control" value={this.state.idSeller} onChange={(event) => this.setState({idSeller: event.target.value})}>
                       {this.state.sellers}
                     </select>
+                    </div>
+                    <div class="form-group">
                     <label>idClient</label>
-                   <select value={this.state.idClient} onChange={(event) => this.setState({idClient: event.target.value})}>
+                   <select class="form-control" value={this.state.idClient} onChange={(event) => this.setState({idClient: event.target.value})}>
                       {this.state.clients}
                     </select>
-                    <label>Model</label>
-                    <select value={this.state.idModel} onChange={(event) => this.setState({idModel: event.target.value})}>
+                    </div>
+                       <div class="form-group">
+                       <label>Model</label>
+                    <select class="form-control" value={this.state.idModel} onChange={(event) => this.setState({idModel: event.target.value})}>
                       {this.state.models}
                     </select>
+                    </div>
+                    <div class="form-group">
                     <label>Size</label>
-                    <input type="text" value={this.state.size} onChange={(event) => this.setState({size: event.target.value})} />
+                    <input class="form-control" type="text" value={this.state.size} onChange={(event) => this.setState({size: event.target.value})} />
+                    </div>
+                    <div class="form-group">
                     <label>Price</label>
-                    <input type="text" value={this.state.price} onChange={(event) => this.setState({price: event.target.value})} />
+                    <input class="form-control" type="text" value={this.state.price} onChange={(event) => this.setState({price: event.target.value})} />
+                    </div>
+                    <div class="form-group">
                     <label>quantity</label>
-                    <input type="text" value={this.state.quantity} onChange={(event) => this.setState({quantity: event.target.value})} />
-                    <button onClick={this.postDataHandler}>Add Post</button>
-                    <StockOption sellerId={this.idSeller} />
+                    <input class="form-control" type="text" value={this.state.quantity} onChange={(event) => this.setState({quantity: event.target.value})} />
+                    </div>
+                    <button class="btn btn-outline-success" onClick={this.postDataHandler}>Add Post</button>
+                    </div>
                 </div>
                 
             );

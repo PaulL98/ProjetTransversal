@@ -19,13 +19,21 @@ class Compta extends Component {
 
 render(){
   return (
+    <div class="container">
     <div className="App">
       <h1> Profit :</h1>
+      <div class="container">
       {this.state.profit}
+      </div>
       <h1> Profit Per Model :</h1>
+      <div class="container">
       {this.state.comptaModel}
+      </div>
       <h1> Seller :</h1>
+      <div class="container">
       {this.state.comptaSeller}
+      </div>
+    </div>
     </div>
   );
 }

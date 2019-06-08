@@ -28,16 +28,24 @@ class AddPayment extends Component {
     render () {
         return (
             <div>
-                <h1>Add a Post</h1>
-                <label>idSeller</label>
-               <select value={this.state.idSeller} onChange={(event) => this.setState({idSeller: event.target.value})}>
+            <h1> Add Payment</h1>
+            <div class="container border rounded p-3">
+            <div class="form-group">
+                <label for="seller" class="text-left">idSeller</label>
+               <select  class="form-control" id="seller" value={this.state.idSeller} onChange={(event) => this.setState({idSeller: event.target.value})}>
                   {this.state.sellers}
                 </select>
-                <label>Sum</label>
-                <input type="text" value={this.state.sum} onChange={(event) => this.setState({sum: event.target.value})} />
+            </div>
+            <div class="form-group">    
+                <label for="sum">Sum</label>
+                <input id="sum" class="form-control" type="text" value={this.state.sum} onChange={(event) => this.setState({sum: event.target.value})} />
+              </div>
+              <div class="form-group">
                 <label>Description</label>
-                <input type="text" value={this.state.description} onChange={(event) => this.setState({description: event.target.value})} />
-                <button onClick={this.postDataHandler}>Add Post</button>
+                <input class="form-control" type="text" value={this.state.description} onChange={(event) => this.setState({description: event.target.value})} />
+               </div>
+                <button  class="btn btn-outline-success" onClick={this.postDataHandler}>Add Payment</button>
+            </div>
             </div>
         );
     }

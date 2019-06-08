@@ -1,7 +1,7 @@
 const sale = require('../routes/sale.js');
 
-describe('model', ()=>{
-    it('getAllModel', async ()=>{
+describe('sale', ()=>{
+    it('getAllSale', async ()=>{
         await sale.getAllSale().then(result =>{
             const jsonRes = JSON.parse('{'+result.split('{').pop().split('}')[0]+'}');
             expect(jsonRes).toHaveProperty('Seller');

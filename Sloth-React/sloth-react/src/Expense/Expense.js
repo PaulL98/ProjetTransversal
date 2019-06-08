@@ -13,7 +13,8 @@ class Expense extends Component{
 
     render(){
   return(
-           <div>
+           <div class="container">
+           <h1>Expense</h1>
            {this.state.expense}
            </div>
        )

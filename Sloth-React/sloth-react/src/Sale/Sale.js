@@ -13,7 +13,8 @@ class Sale extends Component{
 
     render(){
   return(
-           <div>
+           <div class="container">
+           <h1>Sale</h1>
            {this.state.sale}
            </div>
        )

@@ -14,7 +14,7 @@ class Stock extends Component{
 
     render(){
   return(
-           <div>
+           <div class="container">
            {this.state.stock}
            </div>
        )

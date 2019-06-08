@@ -13,7 +13,8 @@ class Payment extends Component{
 
     render(){
   return(
-           <div>
+           <div class="container">
+           <h1>Payment</h1>
            {this.state.payment}
            </div>
        )

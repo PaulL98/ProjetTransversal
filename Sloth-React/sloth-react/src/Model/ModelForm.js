@@ -29,20 +29,30 @@ class AddModel extends Component {
     render () {
         return (
             <div>
-                <h1>Add a Post</h1>
+                <h1>Add Model</h1>
+                <div class="container border rounded p-3">
+                <div class="form-group">
                 <label>name</label>
-                <input type="text" value={this.state.name} onChange={(event) => this.setState({name: event.target.value})} />
+                <input class="form-control" type="text" value={this.state.name} onChange={(event) => this.setState({name: event.target.value})} />
+                </div>
+                <div class="form-group">
                 <label>totalProduction</label>
-                <input type="text" value={this.state.totalProduction} onChange={(event) => this.setState({totalProduction: event.target.value})} />
+                <input class="form-control" type="text" value={this.state.totalProduction} onChange={(event) => this.setState({totalProduction: event.target.value})} />
+                </div>
+                <div class="form-group">
                 <label>totalPrice</label>
-                <input type="text" value={this.state.totalPrice} onChange={(event) => this.setState({totalPrice: event.target.value})} />
+                <input class="form-control" type="text" value={this.state.totalPrice} onChange={(event) => this.setState({totalPrice: event.target.value})} />
+                </div>
+                <div class="form-group">
                 <label>isClothes</label>
-                <select value={this.state.isClothes}  onChange={(event) => this.setState({isClothes: event.target.value})}>
+                <select class="form-control" value={this.state.isClothes}  onChange={(event) => this.setState({isClothes: event.target.value})}>
                 <option value={0} >Choose</option>
                 <option value={0} >Not Clothes</option>
                 <option value={1} >Clothes</option>
                 </select>   
-                <button onClick={this.postDataHandler}>Add Post</button>
+                </div>
+                <button class="btn btn-outline-success" onClick={this.postDataHandler}>Add Post</button>
+                </div>
             </div>
         );
     }
