@@ -7,7 +7,7 @@ import ModelOption from '../Model/ModelOption';
 
 class AddSale extends Component {
     state = {
-        idSeller: '',
+        idSeller: '2',
         idModel: '',
         idClient: '0',
         size: '',
@@ -15,7 +15,7 @@ class AddSale extends Component {
         price: '',
         name: '',
         lastName: '',
-        stock: <StockOption sellerId={this.idSeller} />,
+        stock: <StockOption sellerId={'1'}/>,
         sellers : <SellerOption/>,
         clients : <ClientOption/>,
         models : <ModelOption/>
@@ -82,7 +82,7 @@ class AddSale extends Component {
                     <div class="container border rounded p-3">
                     <div class="form-group">
                     <label>idSeller</label>
-                   <select class="form-control" value={this.state.idSeller} onChange={(event) => this.setState({idSeller: event.target.value})}>
+                   <select class="form-control" value={this.state.idSeller} onChange={(event) => {this.setState({idSeller: event.target.value}); this.setState({stock: <StockOption sellerId={this.state.idSeller}/>}); }}>
                       {this.state.sellers}
                     </select>
                     </div>
@@ -120,6 +120,7 @@ class AddSale extends Component {
                     </div>
                     <button class="btn btn-outline-success" onClick={this.postDataHandler}>Add Post</button>
                     </div>
+               
                 </div>
                 
             );

@@ -22,7 +22,7 @@ class Stock extends Component{
 
       
   getAllStock = () => {
-    axios.get('http://localhost:3001/api/stock/allStock').then( response => {
+    axios.get('http://localhost:3001/api/stock/allCurrentStock').then( response => {
       this.setState({stock : response.data.map((stock, index) => {
        
        return( <tr>

@@ -27,6 +27,12 @@ router.get('/allCurrentStock', function (req, res) {
 	.catch(err => res.send('Error', err.message));
 })
 
+router.post('/transferStock', function (req, res) {
+	 transferStock(req.body) 
+	.then(result => res.send(result))
+	.catch(err => res.send('Error', err.message));
+})
+
 module.exports.getAllCurrentStock = function(){
 	return new Promise((resolve, reject)=>{
 		con.query('SELECT Seller.LastName, Seller.Name, Stock.Size, COALESCE(Stock.Quantity - (SELECT SUM(Sale.Quantity) From Sale WHERE Seller.id = Sale.IdSeller && Sale.IdStock = Stock.Id ), Stock.Quantity) as Quantity , Model.Name FROM Seller, Stock, Model Where Stock.IdSeller = Seller.id && Stock.IdModel = Model.id ORDER BY Seller.LastName , Model.id , Stock.Size DESC', (err, results) => {
@@ -39,7 +45,8 @@ module.exports.getAllCurrentStock = function(){
 router.get('/stockFromSeller', function (req, res) {
 	con.query('SELECT Stock.*, Model.Name FROM Stock, Model WHERE idSeller=? && Model.Id = Stock.IdModel', [req.query.idSeller], function (error, results, fields) {
 	 if (error) throw error;
-	   res.send(results);
+	   console.log(results);
+	   res.send(JSON.stringify(results));
 	 });
  });
 
@@ -62,7 +69,8 @@ function newStock(postData){
 	console.log('Data posted', postData.size);
 	console.log('Data posted', postData.idModel);
 	console.log('Data posted', postData.idSeller);
-	return getStock(postData.size, postData.idModel, postData.idSeller)
+	return module.exports.
+	 getStock(postData.size, postData.idModel, postData.idSeller)
 	.then(result => updateStock(postData,result))
 	.catch(err => console.log('Error', err.message));
 }
@@ -85,14 +93,50 @@ function updateStock(postData,res){
 	});
 }
 
+function updateTransferStock(postData,res){
+	console.log('GS Result', res);
+	return new Promise((resolve, reject)=>{
+		if (!res.length){
+				resolve('There is no such stock');
+		}else{
+			console.log('new Quantity',parseInt(res[0].Quantity) - parseInt(postData.quantity));
+			con.query('UPDATE Stock SET Quantity=? WHERE IdSeller = ? && IdModel = ? && Size = ?', [(parseInt(res[0].Quantity) - parseInt(postData.quantity)), postData.fromIdSeller, postData.idModel, postData.size], function (error, results, fields) {
+				if (error) throw error;
+				resolve(results);
+			});
+			let transferStock = {
+				quantity: postData.quantity,
+				size: postData.size,
+				idModel: postData.idModel,
+				idSeller: postData.toIdSeller
+			}
+			module.exports.getStock(transferStock.size, transferStock.idModel, transferStock.idSeller)
+			.then(result => updateStock(transferStock,result))
+			.catch(err => console.log('Error', err.message));
+		}
+	});
+}
+
 module.exports.getStock = function(size, model, seller){
 	return new Promise((resolve, reject)=>{
 		con.query('SELECT * FROM Stock Where IdSeller = ? && IdModel = ? && Size = ?',[seller, model, size], (err, results) => {
 			if(err) throw err;
-			console.log(results);
+			console.log('STOCK' + results);
 			resolve(results);
 		});
 	});
+}
+
+function transferStock(postData){
+	console.log('Data posted', postData);
+	console.log('Data posted', postData.size);
+	console.log('Data posted', postData.idModel);
+	console.log('Data posted', postData.fromIdSeller);
+	console.log('Data posted', postData.toIdSeller);
+	return module.exports.
+	 getStock(postData.size, postData.idModel, postData.fromIdSeller)
+	.then(result => updateTransferStock(postData,result))
+	.catch(err => console.log('Error', err.message));
 }
 
 module.exports.router = router;

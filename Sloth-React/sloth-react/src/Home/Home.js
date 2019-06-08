@@ -104,7 +104,7 @@ const home = (props) => {
                 <h4 class="card-title">Add Stocks</h4>
                 <h6 class="card-subtitle text-muted">Stock Form</h6>
                 <p class="card-text"> Add Stocks to the DB</p>
-                <button class="btn btn-outline-success" onClick={props.Stock}>Access</button>
+                <button class="btn btn-outline-success" onClick={props.AddStock}>Access</button>
             </div>
             </div>
             <div class="card m-2" style={styles} >
@@ -112,7 +112,7 @@ const home = (props) => {
                 <h4 class="card-title">Transfert Stock</h4>
                 <h6 class="card-subtitle text-muted">Transfert Stock</h6>
                 <p class="card-text"> Transfert a stock to another seller </p>
-                <button class="btn btn-outline-success" onClick={props.Stock}>Access</button>
+                <button class="btn btn-outline-success" onClick={props.TransferStock}>Access</button>
             </div>
             </div>
           </div>

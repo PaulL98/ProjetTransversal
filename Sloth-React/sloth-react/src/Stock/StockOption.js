@@ -4,7 +4,7 @@ import axios from 'axios';
 class StockOption extends Component{
     state = {
       stock : [],
-      sellerId: '1',
+
       currentState : []
     }
 
@@ -16,20 +16,22 @@ class StockOption extends Component{
   return(
            <>
            <option value={0}> Choose Stock </option>
-           {this.state.sellers}
+           {this.state.stock}
            </>
        )
   }
 
        getStock = () => {
-        axios.get('http://localhost:3001/api/stock/StockFromSeller',this.state.sellerId).then( response => {
+         //if(this.state.sellerId === parseInt(this.state.sellerId , 10)){
+        axios.get('http://localhost:3001/api/stock/StockFromSeller?idSeller='+this.props.sellerId).then( response => {
+          {console.log(response)}
           this.setState({stock : response.data.map((stock, index) => {
-              {console.log(response)}
               return( 
                 <option value={stock.Id} >{stock.Name}</option>
                );
            })})
         });
+       // }
        }
 };
 

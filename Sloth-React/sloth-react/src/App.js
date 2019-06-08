@@ -13,6 +13,8 @@ import Compta from './Compta/Compta';
 import Stock from './Stock/Stock';
 import Sale from './Sale/Sale';
 import AddSale from './Sale/SaleForm';
+import AddStock from './Stock/StockForm';
+import TransferStock from './Stock/StockTransferForm';
 
 class App extends Component {
   state = {
@@ -26,6 +28,8 @@ class App extends Component {
     addExpense : <AddExpense/>,
     addModel : <AddModel/>,
     addSale : <AddSale/>,
+    addStock : <AddStock/>,
+    transferStock : <TransferStock/>,
     home : <Home Payment={() => this.setCurrentState(this.state.payment)}
                  Expense={() => this.setCurrentState(this.state.expense)}
                  Sale={() => this.setCurrentState(this.state.sale)}
@@ -35,7 +39,9 @@ class App extends Component {
                  AddPayment={() => this.setCurrentState(this.state.addPayment)}
                  AddExpense={() => this.setCurrentState(this.state.addExpense)}
                  AddModel={() => this.setCurrentState(this.state.addModel)}
-                 AddSale={() => this.setCurrentState(this.state.addSale)}/>,
+                 AddSale={() => this.setCurrentState(this.state.addSale)}
+                 AddStock={() => this.setCurrentState(this.state.addStock)}
+                 TransferStock={() => this.setCurrentState(this.state.transferStock)}/>,
     currentState : []
   }
 
@@ -66,7 +72,9 @@ render(){
       AddPayment={() => this.setCurrentState(this.state.addPayment)}
       AddExpense={() => this.setCurrentState(this.state.addExpense)}
       AddModel={() => this.setCurrentState(this.state.addModel)}
-      AddSale={() => this.setCurrentState(this.state.addSale)}/>
+      AddSale={() => this.setCurrentState(this.state.addSale)}
+      AddStock={() => this.setCurrentState(this.state.addStock)}
+      TransferStock={() => this.setCurrentState(this.state.transferStock)}/>
       {this.state.currentState}
       
     </div>
