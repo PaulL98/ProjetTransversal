@@ -24,6 +24,24 @@ module.exports.getCompta = function(){
 	  });
 }
 
+module.exports.getComptaCreance = function(){
+	return new Promise((resolve, reject)=>{
+		con.query('Select (Select Sum(Sale.Quantity * Sale.Price) From Sale  Where Sale.HasBeenPayed = 0 ) as Creance', (err, results) => {
+			if(err) throw err;
+			resolve(JSON.stringify(results));
+		});
+	  });
+}
+
+module.exports.getComptaExpense = function(){
+	return new Promise((resolve, reject)=>{
+		con.query('Select Sum(Expense.Sum) as Expense From Expense', (err, results) => {
+			if(err) throw err;
+			resolve(JSON.stringify(results));
+		});
+	  });
+}
+
 module.exports.getModelCompta = function(){
 	return new Promise((resolve, reject)=>{
 		con.query('Select Model.Id, Model.Name, COALESCE((Select Sum(Sale.Quantity * Sale.Price)From Sale, Stock WHERE Sale.IdStock = Stock.Id && Stock.IdModel = Model.Id), 0) as Income From Model', (err, results) => {
@@ -35,6 +53,18 @@ module.exports.getModelCompta = function(){
 
 router.get('/sellerCompta', function (req, res) {
 	module.exports.getSellerCompta() 
+	.then(result => res.send(result))
+	.catch(err => res.send('Error', err.message));
+});
+
+router.get('/comptaCreance', function (req, res) {
+	module.exports.getComptaCreance() 
+	.then(result => res.send(result))
+	.catch(err => res.send('Error', err.message));
+});
+
+router.get('/comptaExpense', function (req, res) {
+	module.exports.getComptaExpense() 
 	.then(result => res.send(result))
 	.catch(err => res.send('Error', err.message));
 });

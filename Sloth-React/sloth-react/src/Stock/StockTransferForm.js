@@ -36,36 +36,36 @@ class TransferStock extends Component {
 
     render () {
         return (
-            <div>
+            <div class="container my-5">
                 <h1>Transfer Stock</h1>
                 <div class="container border rounded p-3">
                 <div class="form-group">
-                <label>From Seller</label>
+                <label>From Seller :</label>
                    <select class="form-control" value={this.state.fromIdSeller} onChange={(event) => {this.setState({fromIdSeller: event.target.value}); this.setState({stock: <StockOption sellerId={this.state.idSeller}/>}); }}>
                       {this.state.sellers}
                     </select>
                 </div>
                 <div class="form-group">
-                <label>To Seller</label>
+                <label>To Seller :</label>
                    <select class="form-control" value={this.state.toIdSeller} onChange={(event) => {this.setState({toIdSeller: event.target.value}); this.setState({stock: <StockOption sellerId={this.state.idSeller}/>}); }}>
                       {this.state.sellers}
                     </select>
                 </div>
                 <div class="form-group">
-                <label>Model</label>
+                <label>Model :</label>
                     <select class="form-control" value={this.state.idModel} onChange={(event) => this.setState({idModel: event.target.value})}>
                       {this.state.models}
                     </select>
                 </div>
                 <div class="form-group">
-                <label>Size</label>
+                <label>Size :</label>
                 <input class="form-control" type="text" value={this.state.size} onChange={(event) => this.setState({size: event.target.value})} />
                 </div>
                 <div class="form-group">
-                <label>Quantity</label>
+                <label>Quantity :</label>
                 <input class="form-control" type="text" value={this.state.quantity} onChange={(event) => this.setState({quantity: event.target.value})} />
                 </div>
-                <button class="btn btn-outline-success" onClick={this.postDataHandler}>Add Post</button>
+                <button class="btn btn-outline-success" onClick={this.postDataHandler}>Transfer Stock</button>
                 </div>
             </div>
         );

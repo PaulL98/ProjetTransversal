@@ -13,7 +13,7 @@ class Expense extends Component{
 
     render(){
   return(
-           <div class="container">
+           <div class="container my-5">
            <h1>Expense</h1>
            {this.state.expense}
            </div>
@@ -28,6 +28,7 @@ class Expense extends Component{
                <td>{expense.LastName}</td>
                <td>{expense.Sum}</td>
                <td>{expense.Description}</td>
+               <td>{expense.Date.replace(/-/g, "/").replace(/T/g, " ").substring(0, expense.Date.length - 8)}</td>
            </tr>
           );
            })})
@@ -37,6 +38,7 @@ class Expense extends Component{
           <th>LastName</th>
           <th>Sum</th> 
           <th>Description</th> 
+          <th>Date</th> 
         </tr>
         {state}
         </table>;

@@ -23,7 +23,7 @@ router.post('/addExpense', function (req, res) {
 
 module.exports.getAllExpense = function(){
 	return new Promise((resolve, reject)=>{
-		con.query('SELECT Seller.LastName, Expense.* FROM Expense, Seller Where Seller.Id = Expense.IdSeller', (err, results) => {
+		con.query('SELECT Seller.LastName, Expense.* FROM Expense, Seller Where Seller.Id = Expense.IdSeller ORDER BY Expense.Date DESC', (err, results) => {
 			if(err) throw err;
 			resolve(JSON.stringify(results));
 		});

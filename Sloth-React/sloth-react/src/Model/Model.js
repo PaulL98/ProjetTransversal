@@ -13,7 +13,7 @@ class Model extends Component{
 
     render(){
   return(
-           <div class="container">
+           <div class="container my-5">
            <h1>Model</h1>
            {this.state.model}
            </div>

@@ -15,13 +15,12 @@ router.get('/allSale', function (req, res) {
 
 module.exports.getAllSale = function(){
 	return new Promise((resolve, reject)=>{
-		con.query('SELECT Seller.LastName as Seller, Client.LastName, Client.Name, Model.Name as Model, Stock.Size, Sale.* FROM Sale, Client, Seller, Model, Stock Where Seller.Id = Sale.IdSeller && Client.Id = Sale.IdClient && Stock.Id = Sale.IdStock && Stock.IdModel = Model.Id', (err, results) => {
+		con.query('SELECT Seller.LastName as Seller, Client.LastName, Client.Name, Model.Name as Model, Stock.Size, Sale.* FROM Sale, Client, Seller, Model, Stock Where Seller.Id = Sale.IdSeller && Client.Id = Sale.IdClient && Stock.Id = Sale.IdStock && Stock.IdModel = Model.Id ORDER BY Sale.Date DESC', (err, results) => {
 			if(err) throw err;
 			resolve(JSON.stringify(results));
 		});
 	  });
 }
-
 
 router.post('/addSale', function (req, res) {
 	console.log('sale to add',req.body);
@@ -30,13 +29,29 @@ router.post('/addSale', function (req, res) {
 	.catch(err => res.send('Error', err.message));
 });
 
+router.post('/updateHasBeenPayed', function (req, res) {
+	var postData  = req.body;
+	updateHasBeenPayed(postData.id, postData.hasBeenPayed) 
+	.then(result => res.send(result))
+	.catch(err => res.send('Error', err.message));
+})
+
+function updateHasBeenPayed(id,hasBeenPayed){
+	return new Promise((resolve, reject)=>{
+		con.query('UPDATE Sale SET HasBeenPayed=? WHERE Id=?',[hasBeenPayed, id], (err, results) => {
+			if(err) throw err;
+			resolve(JSON.stringify(results));
+		});
+	  });
+}
+
 function newSale(postData){
 	console.log('Data posted', postData);
 	console.log('Data posted size', postData.size);
 	console.log('Data posted model', postData.idModel);
 	console.log('Data posted seller', postData.idSeller);
 	console.log('Data posted client', postData.idClient);
-	return stock.getStock(postData.size, postData.idModel, postData.idSeller)
+	return stock.getCurrentStock(postData.size, postData.idModel, postData.idSeller)
 	.then(result => addSale(postData,result))
 	.catch(err => console.log('Error', err.message));
 }
@@ -50,7 +65,8 @@ function addSale(postData,res){
 			  idClient : postData.idClient,
 			  IdStock : res[0].Id,
 			  quantity : postData.quantity,
-			  price : postData.price
+			  price : postData.price,
+			  hasBeenPayed : postData.hasBeenPayed
 			};
 			con.query('INSERT INTO Sale SET ?', newSale, function (error, results, fields) {
 				if (error) throw error;

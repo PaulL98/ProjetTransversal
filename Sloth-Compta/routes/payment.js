@@ -22,7 +22,7 @@ router.get('/allPayment', function (req, res) {
 
 module.exports.getAllPayment = function(){
 	return new Promise((resolve, reject)=>{
-		con.query('SELECT Seller.LastName, Payment.* FROM Payment, Seller Where Seller.Id = Payment.IdSeller', (err, results) => {
+		con.query('SELECT Seller.LastName, Payment.* FROM Payment, Seller Where Seller.Id = Payment.IdSeller ORDER BY Payment.Date DESC', (err, results) => {
 			if(err) throw err;
 			resolve(JSON.stringify(results));
 		});

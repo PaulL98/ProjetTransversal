@@ -6,7 +6,7 @@ class AddModel extends Component {
         name: '',
         totalProduction: '',
         totalPrice: '',
-        isClothes: ''
+        isClothes: '0'
     }
 
     postDataHandler = () => {
@@ -28,30 +28,29 @@ class AddModel extends Component {
 
     render () {
         return (
-            <div>
+            <div class="container my-5">
                 <h1>Add Model</h1>
                 <div class="container border rounded p-3">
                 <div class="form-group">
-                <label>name</label>
+                <label>Name :</label>
                 <input class="form-control" type="text" value={this.state.name} onChange={(event) => this.setState({name: event.target.value})} />
                 </div>
                 <div class="form-group">
-                <label>totalProduction</label>
+                <label>Total Production :</label>
                 <input class="form-control" type="text" value={this.state.totalProduction} onChange={(event) => this.setState({totalProduction: event.target.value})} />
                 </div>
                 <div class="form-group">
-                <label>totalPrice</label>
+                <label>Total Price :</label>
                 <input class="form-control" type="text" value={this.state.totalPrice} onChange={(event) => this.setState({totalPrice: event.target.value})} />
                 </div>
                 <div class="form-group">
-                <label>isClothes</label>
+                <label>Is Clothes :</label>
                 <select class="form-control" value={this.state.isClothes}  onChange={(event) => this.setState({isClothes: event.target.value})}>
-                <option value={0} >Choose</option>
                 <option value={0} >Not Clothes</option>
                 <option value={1} >Clothes</option>
                 </select>   
                 </div>
-                <button class="btn btn-outline-success" onClick={this.postDataHandler}>Add Post</button>
+                <button class="btn btn-outline-success" onClick={this.postDataHandler}>Add Model</button>
                 </div>
             </div>
         );

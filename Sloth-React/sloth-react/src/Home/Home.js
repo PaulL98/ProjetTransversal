@@ -7,7 +7,7 @@ const home = (props) => {
       };
 
   return(
-      <div>
+      <div class="mb-3">
           <div class="card-deck m-2">
              <div class="card m-2" style={styles} >
              <div class="card-body d-inline">
