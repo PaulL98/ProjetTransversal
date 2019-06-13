@@ -10,6 +10,7 @@ class AddModel extends Component {
     }
 
     postDataHandler = () => {
+        if(this.state.name != '' && this.state.totalProduction != '' && this.state.totalPrice != ''){
         const data = {
             name: this.state.name,
             totalProduction: this.state.totalProduction,
@@ -24,6 +25,7 @@ class AddModel extends Component {
                 this.setState({totalPrice: ''});
                 this.setState({isClothes: ''});
             });
+        }
     }
 
     render () {

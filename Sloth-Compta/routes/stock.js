@@ -100,8 +100,8 @@ function updateTransferStock(postData,res){
 		if (!res.length){
 				resolve('There is no such stock');
 		}else if(postData.quantity <= res[0].Quantity){
-			console.log('new Quantity',parseInt(res[0].Quantity) - parseInt(postData.quantity));
-			con.query('UPDATE Stock SET Quantity=? WHERE IdSeller = ? && IdModel = ? && Size = ?', [(parseInt(res[0].Quantity) - parseInt(postData.quantity)), postData.fromIdSeller, postData.idModel, postData.size], function (error, results, fields) {
+			console.log('new Quantity',parseInt(res[0].QuantityOverAll) - parseInt(postData.quantity));
+			con.query('UPDATE Stock SET Quantity=? WHERE IdSeller = ? && IdModel = ? && Size = ?', [(parseInt(res[0].QuantityOverAll) - parseInt(postData.quantity)), postData.fromIdSeller, postData.idModel, postData.size], function (error, results, fields) {
 				if (error) throw error;
 				resolve(results);
 			});
@@ -130,7 +130,7 @@ module.exports.getStock = function(size, model, seller){
 
 module.exports.getCurrentStock = function(size, model, seller){
 	return new Promise((resolve, reject)=>{
-		con.query('SELECT Seller.LastName, Seller.Name, Stock.*, COALESCE(Stock.Quantity - (SELECT SUM(Sale.Quantity) From Sale WHERE Seller.id = Sale.IdSeller && Sale.IdStock = Stock.Id ), Stock.Quantity) as Quantity , Model.Name FROM Seller, Stock, Model Where Stock.IdSeller = Seller.id && Stock.IdModel = Model.id && IdSeller = ? && IdModel = ? && Size = ? ORDER BY Seller.LastName , Model.id , Stock.Size DESC',[seller, model, size], (err, results) => {
+		con.query('SELECT Seller.LastName, Seller.Name, Stock.*, Stock.Quantity as QuantityOverAll, COALESCE(Stock.Quantity - (SELECT SUM(Sale.Quantity) From Sale WHERE Seller.id = Sale.IdSeller && Sale.IdStock = Stock.Id ), Stock.Quantity) as Quantity , Model.Name FROM Seller, Stock, Model Where Stock.IdSeller = Seller.id && Stock.IdModel = Model.id && IdSeller = ? && IdModel = ? && Size = ? ORDER BY Seller.LastName , Model.id , Stock.Size DESC',[seller, model, size], (err, results) => {
 			if(err) throw err;
 			console.log('STOCK' + results);
 			resolve(results);

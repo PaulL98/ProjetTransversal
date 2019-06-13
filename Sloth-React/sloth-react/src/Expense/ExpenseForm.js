@@ -11,6 +11,7 @@ class AddExpense extends Component {
     }
     
     postDataHandler = () => {
+        if(this.state.idSeller != '' && this.state.sum != '' && this.state.description != ''){
         const data = {
             idSeller: this.state.idSeller,
             sum: this.state.sum,
@@ -23,6 +24,7 @@ class AddExpense extends Component {
                 this.setState({sum: ''});
                 this.setState({description: ''});
             });
+        }
     }
 
     render () {

@@ -15,6 +15,7 @@ class AddStock extends Component {
     }
 
     postDataHandler = () => {
+        if(this.state.idSeller != '' && this.state.idModel != '' && this.state.quantity != '' && this.state.size != ''  ){
         const data = {
             idSeller: this.state.idSeller,
             idModel: this.state.idModel,
@@ -29,6 +30,7 @@ class AddStock extends Component {
                 this.setState({quantity: ''});
                 this.setState({size: ''});
             });
+        }
     }
 
     render () {

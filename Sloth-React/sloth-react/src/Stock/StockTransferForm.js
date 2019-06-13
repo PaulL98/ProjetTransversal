@@ -16,6 +16,7 @@ class TransferStock extends Component {
     }
 
     postDataHandler = () => {
+        if(this.state.fromIdSeller != '' && this.state.idModel != '' && this.state.quantity != '' && this.state.size != '' && this.state.toIdSeller != ''  ){
         const data = {
             fromIdSeller: this.state.fromIdSeller,
             toIdSeller: this.state.toIdSeller,
@@ -32,6 +33,7 @@ class TransferStock extends Component {
                 this.setState({quantity: ''});
                 this.setState({size: ''});
             });
+        }
     }
 
     render () {

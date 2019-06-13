@@ -7,7 +7,7 @@ import ModelOption from '../Model/ModelOption';
 
 class AddSale extends Component {
     state = {
-        idSeller: '2',
+        idSeller: '',
         idModel: '',
         idClient: '0',
         size: '',
@@ -23,6 +23,7 @@ class AddSale extends Component {
     }
 
     postDataHandler = () => {
+        if((this.state.idSeller != '' && this.state.idModel != '' && this.state.size != '' && this.state.quantity != '' && this.state.price != '')&&((this.state.name != '' && this.state.lastName != '')||(this.state.idClient != '0'))){
         if(this.state.idClient === '0'){
            const clientData = {
             name: this.state.name,
@@ -85,6 +86,7 @@ class AddSale extends Component {
                 this.setState({clients: <ClientOption/>});
             });
         }
+      }
     }
 
     render () {
